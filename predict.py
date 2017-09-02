@@ -1,6 +1,8 @@
 from sklearn import tree
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
+from sklearn import neighbors
+from sklearn import svm
 
 # create simple training data set
 # [height, weight, shoe size]
@@ -13,6 +15,8 @@ train_Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female
 
 tree = tree.DecisionTreeClassifier()
 bayes = GaussianNB()
+neighbors = neighbors.KNeighborsClassifier()
+supportvc = svm.SVC()
 
 # Train your data with Decision Tree 
 # http://scikit-learn.org/stable/modules/tree.html
@@ -21,6 +25,14 @@ tree = tree.fit(train_X, train_Y)
 # Train your data with Bayes
 # http://scikit-learn.org/stable/modules/naive_bayes.html
 bayes = bayes.fit(train_X, train_Y)
+
+# Train your data with k neighbors 
+# http://scikit-learn.org/stable/modules/neighbors.html
+neighbors = neighbors.fit(train_X, train_Y)
+
+# Train your data with Support Vector classifier
+# http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+supportvc = supportvc.fit(train_X, train_Y)
 
 test_X = [[150, 40, 30], [176, 69, 43], [188,92,48],[184,84,44],[183,83,44],
 		  [166,47,36],[170,60,38],[172,64,39],[182,80,42],[180,80,43]]
@@ -31,7 +43,12 @@ test_Y = ['female', 'male', 'male','male','male','female','female',
 
 tree_prediction = tree.predict(test_X)
 bayes_prediction = bayes.predict(test_X)
+neighbors_prediction = neighbors.predict(test_X)
+supportvc_prediction = supportvc.predict(test_X)
 
 
 print("Decision Tree: ",accuracy_score(test_Y,tree_prediction))
 print("Naive Bays: " ,accuracy_score(test_Y,bayes_prediction))
+print("k neighbors: ",accuracy_score(test_Y,neighbors_prediction))
+print("SVC " ,accuracy_score(test_Y,supportvc_prediction))
+
