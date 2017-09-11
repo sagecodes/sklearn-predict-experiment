@@ -39,13 +39,10 @@ test_X = [[150, 40, 30], [176, 69, 43], [188,92,48],[184,84,44],[183,83,44],
 test_Y = ['female', 'male', 'male','male','male','female','female',
 	      'female','male','male']
 
-
-
 tree_prediction = tree.predict(test_X)
 bayes_prediction = bayes.predict(test_X)
 neighbors_prediction = neighbors.predict(test_X)
 supportvc_prediction = supportvc.predict(test_X)
-
 
 print("Decision Tree: ",accuracy_score(test_Y,tree_prediction))
 print("Naive Bays: " ,accuracy_score(test_Y,bayes_prediction))
